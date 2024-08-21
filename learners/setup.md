@@ -4,8 +4,6 @@ permalink: /setup/
 ---
 
 
-
-
 # Running the lessons on your local machine
 
 ## Training directory
@@ -40,17 +38,17 @@ A list of software with version required for this training is listed below:
 |multiqc|1.10|
 |python|3.8|
 
-### conda
+### Nextflow install with conda
 
-The simplest way to install the software for this course is using conda.
+The simplest way to install the software for this course is using `conda`.
 
 
-To install conda see [here](https://carpentries-incubator.github.io/introduction-to-conda-for-data-scientists/setup/). 
+To install `conda` see [here](https://carpentries-incubator.github.io/introduction-to-conda-for-data-scientists/setup/). 
 
 An environment file is provided here [environment.yml](https://raw.githubusercontent.com/carpentries-incubator/workflows-nextflow/main/episodes/data/environment.yml)
 
 ```bash
-wget
+# wget
 wget https://raw.githubusercontent.com/carpentries-incubator/workflows-nextflow/main/episodes/data/environment.yml
 
 # or curl 
@@ -63,10 +61,44 @@ To create the training environment run:
 conda env create -n nf-training -f environment.yml
 ```
 
-Then activate the environment by running
+Then activate the environment by running:
 
 ```bash
 conda activate nf-training
+```
+
+### Nextflow install without conda
+
+Nextflow can be used on any POSIX-compatible system (Linux, macOS, etc), and on Windows through WSL. It requires Bash 3.2 (or later) and Java 11 (or later, up to 22) to be installed. We will need to install nextflow and nf-core in separate commands:
+
+Install the latest version of Nextflow copy \& pasting the following snippet in a terminal window:
+
+```bash
+# Make sure that Java v11 or later is installed:
+java -version
+
+# Install Nextflow
+curl -s https://get.nextflow.io | bash
+```
+
+Next, add Nextflow binary to your user's PATH for easy access:
+
+```bash
+mv nextflow ~/bin/
+# OR system-wide installation:
+# sudo mv nextflow /usr/local/bin
+```
+
+Check the correct installation running the following command:
+
+```bash
+nextflow info
+```
+
+Finally, to install nf-core/tools without `conda` we can use [`pip`](https://pip.pypa.io/en/stable/getting-started/):
+
+```bash
+pip install nf-core
 ```
 
 ## Training scripts
@@ -99,7 +131,7 @@ rm -r workflows-nextflow-main main.zip
 The nextflow scripts for each episode, can be found in the respective episode folders inside this the scripts folder.
 
 
-### Data
+## Training data
 
 Inside the `nf-training` folder download the workshop dataset from Figshare, [https://figshare.com/articles/dataset/RNA-seq\_training\_dataset/14822481](https://figshare.com/articles/dataset/RNA-seq_training_dataset/14822481)
 
@@ -117,55 +149,17 @@ tar -xvf  data.tar.gz
 rm data.tar.gz
 ```
 
-## Visual Studio Code editor setup
+# Visual Studio Code editor setup
 
 Any text editor can be used to write Nextflow scripts. A recommended  code editor is [Visual Studio Code](https://code.visualstudio.com/).
 
 Go to [Visual Studio Code](https://code.visualstudio.com/) and you should see a download button. The button or buttons should be specific to your platform and the download package should be  installable.
 
 
-### Nextflow language support in Visual Studio Code
+## Nextflow language support in Visual Studio Code
 
 You can add Nextflow language support in Visual Studio Code by clicking the [install](https://marketplace.visualstudio.com/items?itemName=nextflow.nextflow) button on the Nextflow language extension.
 
-
-## Nextflow install without conda
-
-Nextflow can be used on any POSIX-compatible system (Linux, macOS, etc), and on Windows through WSL. It requires Bash 3.2 (or later) and Java 11 (or later, up to 22) to be installed
-
-## Nextflow installation
-
-Install the latest version of Nextflow copy \& pasting the following snippet in a terminal window:
-
-```bash
-# Make sure that Java v11 or later is installed:
-java -version
-
-# Install Nextflow
-curl -s https://get.nextflow.io | bash
-```
-
-## Add Nextflow binary to your user's PATH:
-
-```bash
-mv nextflow ~/bin/
-# OR system-wide installation:
-# sudo mv nextflow /usr/local/bin
-```
-
-Check the correct installation running the following command:
-
-```bash
-nextflow info
-```
-
-## nf-core/tools installation without conda
-
-### Pip
-
-```bash
-pip install nf-core
-```
 
 
 
